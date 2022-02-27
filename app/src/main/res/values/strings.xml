@@ -6,4 +6,5 @@
     <string name="expression_01">Expression 01</string>
     <string name="expression_02">Expression 02</string>
     <string name="the_evaluation_of_the_expression_on_the_left_is">The evaluation of the expression on the left is,</string>
+    <string name="status">status</string>
 </resources>

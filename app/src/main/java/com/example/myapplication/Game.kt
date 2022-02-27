@@ -1,10 +1,14 @@
 package com.example.myapplication
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import java.util.*
+import kotlin.concurrent.schedule
+
 
 class Game : AppCompatActivity() {
 
@@ -14,6 +18,7 @@ class Game : AppCompatActivity() {
     var value1 = 0
     var value2 = 0
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -32,13 +37,104 @@ class Game : AppCompatActivity() {
         var numOfTerms1 = 1 + Random().nextInt(4)
         var numOfTerms2 = 1 + Random().nextInt(4)
 
-        generateExpression1(firstNumber1.toString(), numOfTerms1, expression01)
-        generateExpression2(firstNumber2.toString(), numOfTerms2, expression02)
+        val correctStatus = findViewById<TextView>(R.id.correctness)
+
+        generateExpression1(firstNumber1.toString(), numOfTerms1, expression01,0)
+        generateExpression2(firstNumber2.toString(), numOfTerms2, expression02,0)
+
+        grtBtn.setOnClickListener {
+
+            if(value1 > value2) {
+                correctStatus.text = "CORRECT!"
+                correctStatus.setTextColor(Color.parseColor("green"))
+
+//                Timer().schedule(5000) {
+                    val number1 = firstNoGenarator()
+                    val number2 = firstNoGenarator()
+                    val terms1 = noOfTermsGenerator()
+                    val terms2 = noOfTermsGenerator()
+                    generateExpression1(number1.toString(), terms1, expression01, 0)
+                    generateExpression2(number2.toString(), terms2, expression02, 0)
+//                }
+               
+            } else {
+                correctStatus.text = "WRONG!"
+                correctStatus.setTextColor(Color.parseColor("red"))
+
+//                Timer().schedule(5000) {
+                    val number1 = firstNoGenarator()
+                    val number2 = firstNoGenarator()
+                    val terms1 = noOfTermsGenerator()
+                    val terms2 = noOfTermsGenerator()
+                    generateExpression1(number1.toString(), terms1, expression01, 0)
+                    generateExpression2(number2.toString(), terms2, expression02, 0)
+//                }
+            }
+        }
+
+        eqlBtn.setOnClickListener {
+            if(value1 == value2) {
+                correctStatus.text = "CORRECT!"
+                correctStatus.setTextColor(Color.parseColor("green"))
+
+//                Timer().schedule(2000) {
+                    val number1 = firstNoGenarator()
+                    val number2 = firstNoGenarator()
+                    val terms1 = noOfTermsGenerator()
+                    val terms2 = noOfTermsGenerator()
+                    generateExpression1(number1.toString(), terms1, expression01, 0)
+                    generateExpression2(number2.toString(), terms2, expression02, 0)
+//                }
+
+            } else {
+                correctStatus.text = "WRONG!"
+                correctStatus.setTextColor(Color.parseColor("red"))
+                //need to put a delay
+//                Timer().schedule(2000) {
+                    val number1 = firstNoGenarator()
+                    val number2 = firstNoGenarator()
+                    val terms1 = noOfTermsGenerator()
+                    val terms2 = noOfTermsGenerator()
+                    generateExpression1(number1.toString(), terms1, expression01, 0)
+                    generateExpression2(number2.toString(), terms2, expression02, 0)
+//                }
+            }
+        }
+
+        lesBtn.setOnClickListener {
+            if(value1 < value2) {
+                correctStatus.text = "CORRECT!"
+                correctStatus.setTextColor(Color.parseColor("green"))
+
+//                Timer().schedule(2000) {
+                    val number1 = firstNoGenarator()
+                    val number2 = firstNoGenarator()
+                    val terms1 = noOfTermsGenerator()
+                    val terms2 = noOfTermsGenerator()
+                    generateExpression1(number1.toString(), terms1, expression01, 0)
+                    generateExpression2(number2.toString(), terms2, expression02, 0)
+//                }
+
+            } else {
+                correctStatus.text = "WRONG!"
+                correctStatus.setTextColor(Color.parseColor("red"))
+
+//                Timer().schedule(2000) {
+                    val number1 = firstNoGenarator()
+                    val number2 = firstNoGenarator()
+                    val terms1 = noOfTermsGenerator()
+                    val terms2 = noOfTermsGenerator()
+                    generateExpression1(number1.toString(), terms1, expression01,0)
+                    generateExpression2(number2.toString(), terms2, expression02, 0)
+//                }
+            }
+        }
 
     }
 
-    fun generateExpression1(firstNumber1: String, numOfTerms1: Int, expression01: TextView) {
+    fun generateExpression1(firstNumber1: String, numOfTerms1: Int, expression01: TextView, tot: Int) {
 
+        var total = tot
         var numOfTerms = numOfTerms1
         val operators: List<String> = listOf("+", "-", "*", "/")
         val operatorIndex = Random().nextInt(4)
@@ -48,23 +144,26 @@ class Game : AppCompatActivity() {
         expression1 = firstNumber1 + operators[operatorIndex] + secondNumber
 
         when(operatorIndex) {
-            0 -> value1 += firstNumber1.toInt() + secondNumber
-            1 -> value1 += firstNumber1.toInt() - secondNumber
-            2 -> value1 += firstNumber1.toInt() * secondNumber
-            else -> {value1 += firstNumber1.toInt() / secondNumber}
+            0 -> total += total + secondNumber
+            1 -> total += total - secondNumber
+            2 -> total += total * secondNumber
+            else -> {total += total / secondNumber}
         }
 
         numOfTerms--
 
         if (numOfTerms > 0) {
-            generateExpression1("("+expression1+")",numOfTerms, expression01)
+
+            generateExpression1("("+expression1+")",numOfTerms, expression01,total)
         } else {
+            value1 = total
             expression01.text = expression1
         }
     }
 
-    fun generateExpression2(firstNumber2: String, numOfTerms2: Int, expression02: TextView) {
+    fun generateExpression2(firstNumber2: String, numOfTerms2: Int, expression02: TextView, tot: Int) {
 
+        var total = tot
         var numOfTerms = numOfTerms2
         val operators: List<String> = listOf("+", "-", "*", "/")
         val operatorIndex = Random().nextInt(4)
@@ -74,18 +173,29 @@ class Game : AppCompatActivity() {
         expression2 = firstNumber2 + operators[operatorIndex] + secondNumber
 
         when(operatorIndex) {
-            0 -> value2 += firstNumber2.toInt() + secondNumber
-            1 -> value2 += firstNumber2.toInt() - secondNumber
-            2 -> value2 += firstNumber2.toInt() * secondNumber
-            else -> {value2 += firstNumber2.toInt() / secondNumber}
+            0 -> total = total + secondNumber
+            1 -> total = total - secondNumber
+            2 -> total = total * secondNumber
+            else -> {total = total / secondNumber}
         }
 
         numOfTerms--
 
         if (numOfTerms > 0) {
-            generateExpression2("("+expression2+")",numOfTerms, expression02)
+            generateExpression2("("+expression2+")",numOfTerms, expression02, total)
         } else {
+            value2 = total
             expression02.text = expression2
         }
+    }
+
+    fun firstNoGenarator(): Int {
+        val number1 = 1 + Random().nextInt(20)
+        return number1
+    }
+
+    fun noOfTermsGenerator(): Int {
+        val terms = 1 + Random().nextInt(4)
+        return terms
     }
 }
