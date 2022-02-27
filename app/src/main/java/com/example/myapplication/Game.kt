@@ -11,6 +11,9 @@ class Game : AppCompatActivity() {
     var expression1 = "Expression 01"
     var expression2 = "Expression 02"
 
+    var value1 = 0
+    var value2 = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -34,7 +37,7 @@ class Game : AppCompatActivity() {
 
     }
 
-    fun generateExpression1(firstNumber: String, numOfTerms1: Int, expression01: TextView) {
+    fun generateExpression1(firstNumber1: String, numOfTerms1: Int, expression01: TextView) {
 
         var numOfTerms = numOfTerms1
         val operators: List<String> = listOf("+", "-", "*", "/")
@@ -42,7 +45,15 @@ class Game : AppCompatActivity() {
 
         val secondNumber = 1+ Random().nextInt(20)
 
-        expression1 = firstNumber + operators[operatorIndex] + secondNumber
+        expression1 = firstNumber1 + operators[operatorIndex] + secondNumber
+
+        when(operatorIndex) {
+            0 -> value1 += firstNumber1.toInt() + secondNumber
+            1 -> value1 += firstNumber1.toInt() - secondNumber
+            2 -> value1 += firstNumber1.toInt() * secondNumber
+            else -> {value1 += firstNumber1.toInt() / secondNumber}
+        }
+
         numOfTerms--
 
         if (numOfTerms > 0) {
@@ -61,6 +72,14 @@ class Game : AppCompatActivity() {
         val secondNumber = 1+ Random().nextInt(20)
 
         expression2 = firstNumber2 + operators[operatorIndex] + secondNumber
+
+        when(operatorIndex) {
+            0 -> value2 += firstNumber2.toInt() + secondNumber
+            1 -> value2 += firstNumber2.toInt() - secondNumber
+            2 -> value2 += firstNumber2.toInt() * secondNumber
+            else -> {value2 += firstNumber2.toInt() / secondNumber}
+        }
+
         numOfTerms--
 
         if (numOfTerms > 0) {
