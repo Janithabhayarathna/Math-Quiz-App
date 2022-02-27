@@ -32,6 +32,7 @@ class Game : AppCompatActivity() {
 
     fun generateExpression1(firstNumber: String, numOfTerms: Int, expression01: TextView) {
 
+        var numOfTerms = numOfTerms
         val operators: List<String> = listOf("+", "-", "*", "/")
         val operatorIndex = gen.nextInt(4)
 
