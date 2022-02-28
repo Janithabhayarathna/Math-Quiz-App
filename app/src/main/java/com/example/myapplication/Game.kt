@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import java.util.*
-import kotlin.concurrent.schedule
+import kotlin.reflect.typeOf
 
 
 class Game : AppCompatActivity() {
@@ -39,8 +39,8 @@ class Game : AppCompatActivity() {
 
         val correctStatus = findViewById<TextView>(R.id.correctness)
 
-        generateExpression1(firstNumber1.toString(), numOfTerms1, expression01,0)
-        generateExpression2(firstNumber2.toString(), numOfTerms2, expression02,0)
+        generateExpression1(firstNumber1.toString(), numOfTerms1, expression01, firstNumber1)
+        generateExpression2(firstNumber2.toString(), numOfTerms2, expression02,firstNumber2)
 
         grtBtn.setOnClickListener {
 
@@ -53,8 +53,8 @@ class Game : AppCompatActivity() {
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
                     val terms2 = noOfTermsGenerator()
-                    generateExpression1(number1.toString(), terms1, expression01, 0)
-                    generateExpression2(number2.toString(), terms2, expression02, 0)
+                    generateExpression1(number1.toString(), terms1, expression01, number1)
+                    generateExpression2(number2.toString(), terms2, expression02, number2)
 //                }
                
             } else {
@@ -66,8 +66,8 @@ class Game : AppCompatActivity() {
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
                     val terms2 = noOfTermsGenerator()
-                    generateExpression1(number1.toString(), terms1, expression01, 0)
-                    generateExpression2(number2.toString(), terms2, expression02, 0)
+                    generateExpression1(number1.toString(), terms1, expression01, number1)
+                    generateExpression2(number2.toString(), terms2, expression02, number2)
 //                }
             }
         }
@@ -82,8 +82,8 @@ class Game : AppCompatActivity() {
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
                     val terms2 = noOfTermsGenerator()
-                    generateExpression1(number1.toString(), terms1, expression01, 0)
-                    generateExpression2(number2.toString(), terms2, expression02, 0)
+                    generateExpression1(number1.toString(), terms1, expression01, number1)
+                    generateExpression2(number2.toString(), terms2, expression02, number2)
 //                }
 
             } else {
@@ -95,8 +95,8 @@ class Game : AppCompatActivity() {
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
                     val terms2 = noOfTermsGenerator()
-                    generateExpression1(number1.toString(), terms1, expression01, 0)
-                    generateExpression2(number2.toString(), terms2, expression02, 0)
+                    generateExpression1(number1.toString(), terms1, expression01, number1)
+                    generateExpression2(number2.toString(), terms2, expression02, number2)
 //                }
             }
         }
@@ -111,8 +111,8 @@ class Game : AppCompatActivity() {
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
                     val terms2 = noOfTermsGenerator()
-                    generateExpression1(number1.toString(), terms1, expression01, 0)
-                    generateExpression2(number2.toString(), terms2, expression02, 0)
+                    generateExpression1(number1.toString(), terms1, expression01, number1)
+                    generateExpression2(number2.toString(), terms2, expression02, number2)
 //                }
 
             } else {
@@ -124,8 +124,8 @@ class Game : AppCompatActivity() {
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
                     val terms2 = noOfTermsGenerator()
-                    generateExpression1(number1.toString(), terms1, expression01,0)
-                    generateExpression2(number2.toString(), terms2, expression02, 0)
+                    generateExpression1(number1.toString(), terms1, expression01,number1)
+                    generateExpression2(number2.toString(), terms2, expression02, number2)
 //                }
             }
         }
@@ -136,18 +136,44 @@ class Game : AppCompatActivity() {
 
         var total = tot
         var numOfTerms = numOfTerms1
+
         val operators: List<String> = listOf("+", "-", "*", "/")
         val operatorIndex = Random().nextInt(4)
 
-        val secondNumber = 1+ Random().nextInt(20)
+        var secondNumber = 0
+        var flag = true
+        while (flag) {
+            secondNumber = 1 + Random().nextInt(20)
 
-        expression1 = firstNumber1 + operators[operatorIndex] + secondNumber
-
-        when(operatorIndex) {
-            0 -> total += total + secondNumber
-            1 -> total += total - secondNumber
-            2 -> total += total * secondNumber
-            else -> {total += total / secondNumber}
+            when (operatorIndex) {
+                0 -> {
+                    total += secondNumber
+                    flag = false
+                }
+                1 -> {
+                    total -= secondNumber
+                    flag = false
+                }
+                2 -> {
+                    total *= secondNumber
+                    flag = false
+                }
+                else -> {
+                    if (total % secondNumber == 0) {
+                        flag = false
+                        total /= secondNumber
+                    } else {
+                        flag = true
+                        continue
+                    }
+                }
+            }
+            if (total > 100) {
+                val number1 = firstNoGenarator()
+                val terms1 = noOfTermsGenerator()
+                generateExpression1(number1.toString(), terms1, expression01, number1)
+            }
+            expression1 = firstNumber1 + operators[operatorIndex] + secondNumber
         }
 
         numOfTerms--
@@ -168,15 +194,39 @@ class Game : AppCompatActivity() {
         val operators: List<String> = listOf("+", "-", "*", "/")
         val operatorIndex = Random().nextInt(4)
 
-        val secondNumber = 1+ Random().nextInt(20)
-
-        expression2 = firstNumber2 + operators[operatorIndex] + secondNumber
-
-        when(operatorIndex) {
-            0 -> total = total + secondNumber
-            1 -> total = total - secondNumber
-            2 -> total = total * secondNumber
-            else -> {total = total / secondNumber}
+        var secondNumber = 0
+        var flag = true
+        while (flag) {
+            secondNumber = 1+ Random().nextInt(20)
+            when (operatorIndex) {
+                0 -> {
+                    total += secondNumber
+                    flag = false
+                }
+                1 -> {
+                    total -= secondNumber
+                    flag = false
+                }
+                2 -> {
+                    total *= secondNumber
+                    flag = false
+                }
+                else -> {
+                    if (total % secondNumber == 0) {
+                        total /= secondNumber
+                        flag = false
+                    } else {
+                        flag = true
+                        continue
+                    }
+                }
+            }
+            if (total > 100) {
+                val number2 = firstNoGenarator()
+                val terms2 = noOfTermsGenerator()
+                generateExpression2(number2.toString(), terms2, expression02, number2)
+            }
+            expression2 = firstNumber2 + operators[operatorIndex] + secondNumber
         }
 
         numOfTerms--
@@ -190,12 +240,10 @@ class Game : AppCompatActivity() {
     }
 
     fun firstNoGenarator(): Int {
-        val number1 = 1 + Random().nextInt(20)
-        return number1
+        return 1 + Random().nextInt(20)
     }
 
     fun noOfTermsGenerator(): Int {
-        val terms = 1 + Random().nextInt(4)
-        return terms
+        return 1 + Random().nextInt(4)
     }
 }

@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             val view = layoutInflater.inflate(R.layout.popup, null)
             popup.contentView = view
             val text = view.findViewById<TextView>(R.id.para)
-            text.text = "Author; \nStudent id: w1820253 / 20200571 \nName: J C Abhayarathna \n\t I confirm that I understand what plagiarism is and have read and understood the section on Assessment Offences in the EssentialInformation for Students. The work that I have submitted is entirely my own. Any work from other authors is duly referenced and acknowledged."
+            text.text = "Author; \nStudent id: w1820253 / 20200571 \nName: J C Abhayarathna \n\n\t I confirm that I understand what plagiarism is and have read and understood the section on Assessment Offences in the EssentialInformation for Students. The work that I have submitted is entirely my own. Any work from other authors is duly referenced and acknowledged."
             text.setOnClickListener {
                 popup.dismiss()
             }
