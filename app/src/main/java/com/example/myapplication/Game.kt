@@ -55,18 +55,19 @@ class Game : AppCompatActivity() {
 
         grtBtn.setOnClickListener {
 
-            if (correctValue == 5) {
-                Toast.makeText(applicationContext, "10 seconds added.", Toast.LENGTH_LONG).show()
-                counter += 10
-                correctValue -= 5
-            }
-
             if (!finish) {
                 if (value1 > value2) {
                     correctStatus.text = "CORRECT!"
+                    correctStatus.setTextColor(Color.parseColor("green"))
+
                     noOfCorrectAnswers++
                     correctValue++
-                    correctStatus.setTextColor(Color.parseColor("green"))
+
+                    if (correctValue == 5) {
+                        Toast.makeText(applicationContext, "10 seconds added.", Toast.LENGTH_LONG).show()
+                        counter += 10
+                        correctValue -= 5
+                    }
 
 //                Timer().schedule(5000) {
                     val number1 = firstNoGenarator()
@@ -99,18 +100,18 @@ class Game : AppCompatActivity() {
 
         eqlBtn.setOnClickListener {
 
-            if (correctValue == 5) {
-                Toast.makeText(applicationContext, "10 seconds added.", Toast.LENGTH_LONG).show()
-                counter += 10
-                correctValue -= 5
-            }
-
             if (!finish) {
                 if (value1 == value2) {
                     correctStatus.text = "CORRECT!"
+                    correctStatus.setTextColor(Color.parseColor("green"))
                     noOfCorrectAnswers++
                     correctValue++
-                    correctStatus.setTextColor(Color.parseColor("green"))
+
+                    if (correctValue == 5) {
+                        Toast.makeText(applicationContext, "10 seconds added.", Toast.LENGTH_LONG).show()
+                        counter += 10
+                        correctValue -= 5
+                    }
 
 //                Timer().schedule(2000) {
                     val number1 = firstNoGenarator()
@@ -143,18 +144,18 @@ class Game : AppCompatActivity() {
 
         lesBtn.setOnClickListener {
 
-            if (correctValue == 5) {
-                Toast.makeText(applicationContext, "10 seconds added.", Toast.LENGTH_LONG).show()
-                counter += 10
-                correctValue -= 5
-            }
-
             if (!finish) {
                 if (value1 < value2) {
                     correctStatus.text = "CORRECT!"
+                    correctStatus.setTextColor(Color.parseColor("green"))
                     noOfCorrectAnswers++
                     correctValue++
-                    correctStatus.setTextColor(Color.parseColor("green"))
+
+                    if (correctValue == 5) {
+                        Toast.makeText(applicationContext, "10 seconds added.", Toast.LENGTH_LONG).show()
+                        counter += 10
+                        correctValue -= 5
+                    }
 
 //                Timer().schedule(2000) {
                     val number1 = firstNoGenarator()
@@ -207,9 +208,9 @@ class Game : AppCompatActivity() {
                 val wrongMarkIndicator = findViewById<TextView>(R.id.wrongMark)
 
                 correctMarkIndicator.text = "Correct answers - " + noOfCorrectAnswers.toString()
-                correctMarkIndicator.setTextColor(Color.GREEN)
+//                correctMarkIndicator.setTextColor(Color.GREEN)
                 wrongMarkIndicator.text = "Wrong answers - " + noOfWrongAnswers.toString()
-                wrongMarkIndicator.setTextColor(Color.RED)
+//                wrongMarkIndicator.setTextColor(Color.RED)
             }
         }.start()
     }
