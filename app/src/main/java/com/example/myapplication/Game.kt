@@ -7,7 +7,8 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import java.util.*
-import kotlin.reflect.typeOf
+import android.os.CountDownTimer
+import android.view.View
 
 
 class Game : AppCompatActivity() {
@@ -21,11 +22,15 @@ class Game : AppCompatActivity() {
     var noOfCorrectAnswers = 0
     var noOfWrongAnswers = 0
 
+    var counter = 0
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
+        startTimer()
 
         val expression01 = findViewById<TextView>(R.id.exp1)
         val expression02 = findViewById<TextView>(R.id.exp2)
@@ -139,6 +144,32 @@ class Game : AppCompatActivity() {
             }
         }
 
+    }
+
+    fun startTimer() {
+        //Referenced from: https://www.tutorialspoint.com/how-to-set-a-timer-in-android-using-kotlin
+
+        val timer = findViewById<TextView>(R.id.timer)
+        object : CountDownTimer(50000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                timer.text = counter.toString()
+                timer.setTextColor(Color.BLUE)
+                counter++
+            }
+            @SuppressLint("SetTextI18n")
+            override fun onFinish() {
+                timer.text = "Time Over!"
+                timer.setTextColor(Color.RED)
+                //Display the result
+                val correctMarkIndicator = findViewById<TextView>(R.id.marks)
+                val wrongMarkIndicator = findViewById<TextView>(R.id.wrongMark)
+
+                correctMarkIndicator.text = "Correct answers - " + noOfCorrectAnswers.toString()
+                correctMarkIndicator.setTextColor(Color.GREEN)
+                wrongMarkIndicator.text = "Wrong answers - " + noOfWrongAnswers.toString()
+                wrongMarkIndicator.setTextColor(Color.RED)
+            }
+        }.start()
     }
 
     fun generateExpression1(firstNumber1: String, numOfTerms1: Int, expression01: TextView, tot: Int) {
