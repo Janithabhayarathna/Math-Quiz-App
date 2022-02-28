@@ -18,6 +18,9 @@ class Game : AppCompatActivity() {
     var value1 = 0
     var value2 = 0
 
+    var noOfCorrectAnswers = 0
+    var noOfWrongAnswers = 0
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -46,6 +49,7 @@ class Game : AppCompatActivity() {
 
             if(value1 > value2) {
                 correctStatus.text = "CORRECT!"
+                noOfCorrectAnswers++
                 correctStatus.setTextColor(Color.parseColor("green"))
 
 //                Timer().schedule(5000) {
@@ -59,6 +63,7 @@ class Game : AppCompatActivity() {
                
             } else {
                 correctStatus.text = "WRONG!"
+                noOfWrongAnswers++
                 correctStatus.setTextColor(Color.parseColor("red"))
 
 //                Timer().schedule(5000) {
@@ -75,6 +80,7 @@ class Game : AppCompatActivity() {
         eqlBtn.setOnClickListener {
             if(value1 == value2) {
                 correctStatus.text = "CORRECT!"
+                noOfCorrectAnswers++
                 correctStatus.setTextColor(Color.parseColor("green"))
 
 //                Timer().schedule(2000) {
@@ -88,6 +94,7 @@ class Game : AppCompatActivity() {
 
             } else {
                 correctStatus.text = "WRONG!"
+                noOfWrongAnswers++
                 correctStatus.setTextColor(Color.parseColor("red"))
                 //need to put a delay
 //                Timer().schedule(2000) {
@@ -104,6 +111,7 @@ class Game : AppCompatActivity() {
         lesBtn.setOnClickListener {
             if(value1 < value2) {
                 correctStatus.text = "CORRECT!"
+                noOfCorrectAnswers++
                 correctStatus.setTextColor(Color.parseColor("green"))
 
 //                Timer().schedule(2000) {
@@ -117,6 +125,7 @@ class Game : AppCompatActivity() {
 
             } else {
                 correctStatus.text = "WRONG!"
+                noOfWrongAnswers++
                 correctStatus.setTextColor(Color.parseColor("red"))
 
 //                Timer().schedule(2000) {
@@ -168,18 +177,18 @@ class Game : AppCompatActivity() {
                     }
                 }
             }
-            if (total > 100) {
-                val number1 = firstNoGenarator()
-                val terms1 = noOfTermsGenerator()
-                generateExpression1(number1.toString(), terms1, expression01, number1)
-            }
             expression1 = firstNumber1 + operators[operatorIndex] + secondNumber
+        }
+
+        if (total > 100) {
+            val number1 = firstNoGenarator()
+            val terms1 = noOfTermsGenerator()
+            generateExpression1(number1.toString(), terms1, expression01, number1)
         }
 
         numOfTerms--
 
         if (numOfTerms > 0) {
-
             generateExpression1("("+expression1+")",numOfTerms, expression01,total)
         } else {
             value1 = total
@@ -221,12 +230,12 @@ class Game : AppCompatActivity() {
                     }
                 }
             }
-            if (total > 100) {
-                val number2 = firstNoGenarator()
-                val terms2 = noOfTermsGenerator()
-                generateExpression2(number2.toString(), terms2, expression02, number2)
-            }
             expression2 = firstNumber2 + operators[operatorIndex] + secondNumber
+        }
+        if (total > 100) {
+            val number2 = firstNoGenarator()
+            val terms2 = noOfTermsGenerator()
+            generateExpression2(number2.toString(), terms2, expression02, number2)
         }
 
         numOfTerms--
