@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import java.util.*
 import android.os.CountDownTimer
-import android.view.View
+import android.widget.Toast
 
 
 class Game : AppCompatActivity() {
@@ -22,7 +22,10 @@ class Game : AppCompatActivity() {
     var noOfCorrectAnswers = 0
     var noOfWrongAnswers = 0
 
-    var counter = 0
+    var correctValue = 0
+
+    var counter = 50
+    var finish = false
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,10 +55,18 @@ class Game : AppCompatActivity() {
 
         grtBtn.setOnClickListener {
 
-            if(value1 > value2) {
-                correctStatus.text = "CORRECT!"
-                noOfCorrectAnswers++
-                correctStatus.setTextColor(Color.parseColor("green"))
+            if (correctValue == 5) {
+                Toast.makeText(applicationContext, "10 seconds added.", Toast.LENGTH_LONG).show()
+                counter += 10
+                correctValue -= 5
+            }
+
+            if (!finish) {
+                if (value1 > value2) {
+                    correctStatus.text = "CORRECT!"
+                    noOfCorrectAnswers++
+                    correctValue++
+                    correctStatus.setTextColor(Color.parseColor("green"))
 
 //                Timer().schedule(5000) {
                     val number1 = firstNoGenarator()
@@ -65,28 +76,41 @@ class Game : AppCompatActivity() {
                     generateExpression1(number1.toString(), terms1, expression01, number1)
                     generateExpression2(number2.toString(), terms2, expression02, number2)
 //                }
-               
+
+                } else {
+                    correctStatus.text = "WRONG!"
+                    noOfWrongAnswers++
+                    correctStatus.setTextColor(Color.parseColor("red"))
+
+//                Timer().schedule(5000) {
+                    val number1 = firstNoGenarator()
+                    val number2 = firstNoGenarator()
+                    val terms1 = noOfTermsGenerator()
+                    val terms2 = noOfTermsGenerator()
+                    generateExpression1(number1.toString(), terms1, expression01, number1)
+                    generateExpression2(number2.toString(), terms2, expression02, number2)
+//                }
+                }
             } else {
-                correctStatus.text = "WRONG!"
-                noOfWrongAnswers++
-                correctStatus.setTextColor(Color.parseColor("red"))
-
-//                Timer().schedule(5000) {
-                    val number1 = firstNoGenarator()
-                    val number2 = firstNoGenarator()
-                    val terms1 = noOfTermsGenerator()
-                    val terms2 = noOfTermsGenerator()
-                    generateExpression1(number1.toString(), terms1, expression01, number1)
-                    generateExpression2(number2.toString(), terms2, expression02, number2)
-//                }
+                Toast.makeText(applicationContext, "Time over!", Toast.LENGTH_LONG).show()
+                correctStatus.text = " "
             }
         }
 
         eqlBtn.setOnClickListener {
-            if(value1 == value2) {
-                correctStatus.text = "CORRECT!"
-                noOfCorrectAnswers++
-                correctStatus.setTextColor(Color.parseColor("green"))
+
+            if (correctValue == 5) {
+                Toast.makeText(applicationContext, "10 seconds added.", Toast.LENGTH_LONG).show()
+                counter += 10
+                correctValue -= 5
+            }
+
+            if (!finish) {
+                if (value1 == value2) {
+                    correctStatus.text = "CORRECT!"
+                    noOfCorrectAnswers++
+                    correctValue++
+                    correctStatus.setTextColor(Color.parseColor("green"))
 
 //                Timer().schedule(2000) {
                     val number1 = firstNoGenarator()
@@ -97,27 +121,40 @@ class Game : AppCompatActivity() {
                     generateExpression2(number2.toString(), terms2, expression02, number2)
 //                }
 
+                } else {
+                    correctStatus.text = "WRONG!"
+                    noOfWrongAnswers++
+                    correctStatus.setTextColor(Color.parseColor("red"))
+                    //need to put a delay
+//                Timer().schedule(2000) {
+                    val number1 = firstNoGenarator()
+                    val number2 = firstNoGenarator()
+                    val terms1 = noOfTermsGenerator()
+                    val terms2 = noOfTermsGenerator()
+                    generateExpression1(number1.toString(), terms1, expression01, number1)
+                    generateExpression2(number2.toString(), terms2, expression02, number2)
+//                }
+                }
             } else {
-                correctStatus.text = "WRONG!"
-                noOfWrongAnswers++
-                correctStatus.setTextColor(Color.parseColor("red"))
-                //need to put a delay
-//                Timer().schedule(2000) {
-                    val number1 = firstNoGenarator()
-                    val number2 = firstNoGenarator()
-                    val terms1 = noOfTermsGenerator()
-                    val terms2 = noOfTermsGenerator()
-                    generateExpression1(number1.toString(), terms1, expression01, number1)
-                    generateExpression2(number2.toString(), terms2, expression02, number2)
-//                }
+                Toast.makeText(applicationContext, "Time over!", Toast.LENGTH_LONG).show()
+                correctStatus.text = " "
             }
         }
 
         lesBtn.setOnClickListener {
-            if(value1 < value2) {
-                correctStatus.text = "CORRECT!"
-                noOfCorrectAnswers++
-                correctStatus.setTextColor(Color.parseColor("green"))
+
+            if (correctValue == 5) {
+                Toast.makeText(applicationContext, "10 seconds added.", Toast.LENGTH_LONG).show()
+                counter += 10
+                correctValue -= 5
+            }
+
+            if (!finish) {
+                if (value1 < value2) {
+                    correctStatus.text = "CORRECT!"
+                    noOfCorrectAnswers++
+                    correctValue++
+                    correctStatus.setTextColor(Color.parseColor("green"))
 
 //                Timer().schedule(2000) {
                     val number1 = firstNoGenarator()
@@ -128,19 +165,23 @@ class Game : AppCompatActivity() {
                     generateExpression2(number2.toString(), terms2, expression02, number2)
 //                }
 
-            } else {
-                correctStatus.text = "WRONG!"
-                noOfWrongAnswers++
-                correctStatus.setTextColor(Color.parseColor("red"))
+                } else {
+                    correctStatus.text = "WRONG!"
+                    noOfWrongAnswers++
+                    correctStatus.setTextColor(Color.parseColor("red"))
 
 //                Timer().schedule(2000) {
                     val number1 = firstNoGenarator()
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
                     val terms2 = noOfTermsGenerator()
-                    generateExpression1(number1.toString(), terms1, expression01,number1)
+                    generateExpression1(number1.toString(), terms1, expression01, number1)
                     generateExpression2(number2.toString(), terms2, expression02, number2)
 //                }
+                }
+            } else {
+                Toast.makeText(applicationContext, "Time over!", Toast.LENGTH_LONG).show()
+                correctStatus.text = " "
             }
         }
 
@@ -154,12 +195,13 @@ class Game : AppCompatActivity() {
             override fun onTick(millisUntilFinished: Long) {
                 timer.text = counter.toString()
                 timer.setTextColor(Color.BLUE)
-                counter++
+                counter--
             }
             @SuppressLint("SetTextI18n")
             override fun onFinish() {
                 timer.text = "Time Over!"
                 timer.setTextColor(Color.RED)
+                finish = true
                 //Display the result
                 val correctMarkIndicator = findViewById<TextView>(R.id.marks)
                 val wrongMarkIndicator = findViewById<TextView>(R.id.wrongMark)
