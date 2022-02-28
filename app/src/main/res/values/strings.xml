@@ -8,4 +8,6 @@
     <string name="the_evaluation_of_the_expression_on_the_left_is">The evaluation of the expression on the left is,</string>
     <string name="status">status</string>
     <string name="textview">TextView</string>
+    <string name="about">About</string>
+    <string name="new_game">New Game</string>
 </resources>

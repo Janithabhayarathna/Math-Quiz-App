@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
 import android.widget.Button
 import android.widget.PopupWindow
 import android.widget.TextView
@@ -27,7 +28,8 @@ class MainActivity : AppCompatActivity() {
             text.setOnClickListener {
                 popup.dismiss()
             }
-            popup.showAsDropDown(aboutBtn)
+            popup.showAtLocation(view, Gravity.CENTER, 0, 0)
+
         }
 
         nextGameBtn.setOnClickListener {
