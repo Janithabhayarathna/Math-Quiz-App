@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,5 +21,11 @@ class ScoreViewer : AppCompatActivity() {
         correctCount.setTextColor(Color.GREEN)
         wrongCount.text = wrong
         wrongCount.setTextColor(Color.RED)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val back = Intent(this , MainActivity::class.java)
+        startActivity(back)
     }
 }

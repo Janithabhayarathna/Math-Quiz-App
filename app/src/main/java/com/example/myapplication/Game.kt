@@ -184,9 +184,13 @@ class Game : AppCompatActivity() {
         //Referenced from: https://www.tutorialspoint.com/how-to-set-a-timer-in-android-using-kotlin
 
         val timer = findViewById<TextView>(R.id.timer)
-        object : CountDownTimer(50000, 1000) {
+        object : CountDownTimer(500000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 timer.text = counter.toString()
+                if (counter == 0) {
+                    cancel()
+                    onFinish()
+                }
                 timer.setTextColor(Color.BLUE)
                 counter--
             }
