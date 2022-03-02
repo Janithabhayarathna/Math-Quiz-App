@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".ScoreViewer"
+            android:exported="false" />
+        <activity
             android:name=".Game"
             android:exported="false" />
         <activity
