@@ -1,6 +1,7 @@
 package com.example.myapplication
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +10,8 @@ import android.widget.TextView
 import java.util.*
 import android.os.CountDownTimer
 import android.widget.Toast
-
+import java.util.Timer
+import kotlin.concurrent.schedule
 
 class Game : AppCompatActivity() {
 
@@ -69,28 +71,24 @@ class Game : AppCompatActivity() {
                         correctValue -= 5
                     }
 
-//                Timer().schedule(5000) {
                     val number1 = firstNoGenarator()
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
                     val terms2 = noOfTermsGenerator()
                     generateExpression1(number1.toString(), terms1, expression01, number1)
                     generateExpression2(number2.toString(), terms2, expression02, number2)
-//                }
 
                 } else {
                     correctStatus.text = "WRONG!"
                     noOfWrongAnswers++
                     correctStatus.setTextColor(Color.parseColor("red"))
 
-//                Timer().schedule(5000) {
                     val number1 = firstNoGenarator()
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
                     val terms2 = noOfTermsGenerator()
                     generateExpression1(number1.toString(), terms1, expression01, number1)
                     generateExpression2(number2.toString(), terms2, expression02, number2)
-//                }
                 }
             } else {
                 Toast.makeText(applicationContext, "Time over!", Toast.LENGTH_LONG).show()
@@ -113,28 +111,25 @@ class Game : AppCompatActivity() {
                         correctValue -= 5
                     }
 
-//                Timer().schedule(2000) {
                     val number1 = firstNoGenarator()
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
                     val terms2 = noOfTermsGenerator()
                     generateExpression1(number1.toString(), terms1, expression01, number1)
                     generateExpression2(number2.toString(), terms2, expression02, number2)
-//                }
 
                 } else {
                     correctStatus.text = "WRONG!"
                     noOfWrongAnswers++
                     correctStatus.setTextColor(Color.parseColor("red"))
-                    //need to put a delay
-//                Timer().schedule(2000) {
+
                     val number1 = firstNoGenarator()
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
                     val terms2 = noOfTermsGenerator()
                     generateExpression1(number1.toString(), terms1, expression01, number1)
                     generateExpression2(number2.toString(), terms2, expression02, number2)
-//                }
+
                 }
             } else {
                 Toast.makeText(applicationContext, "Time over!", Toast.LENGTH_LONG).show()
@@ -157,29 +152,26 @@ class Game : AppCompatActivity() {
                         correctValue -= 5
                     }
 
-//                Timer().schedule(2000) {
                     val number1 = firstNoGenarator()
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
                     val terms2 = noOfTermsGenerator()
                     generateExpression1(number1.toString(), terms1, expression01, number1)
                     generateExpression2(number2.toString(), terms2, expression02, number2)
-//                }
 
                 } else {
                     correctStatus.text = "WRONG!"
                     noOfWrongAnswers++
                     correctStatus.setTextColor(Color.parseColor("red"))
 
-//                Timer().schedule(2000) {
                     val number1 = firstNoGenarator()
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
                     val terms2 = noOfTermsGenerator()
                     generateExpression1(number1.toString(), terms1, expression01, number1)
                     generateExpression2(number2.toString(), terms2, expression02, number2)
-//                }
                 }
+
             } else {
                 Toast.makeText(applicationContext, "Time over!", Toast.LENGTH_LONG).show()
                 correctStatus.text = " "
@@ -203,14 +195,13 @@ class Game : AppCompatActivity() {
                 timer.text = "Time Over!"
                 timer.setTextColor(Color.RED)
                 finish = true
-                //Display the result
-                val correctMarkIndicator = findViewById<TextView>(R.id.marks)
-                val wrongMarkIndicator = findViewById<TextView>(R.id.wrongMark)
 
-                correctMarkIndicator.text = "Correct answers - " + noOfCorrectAnswers.toString()
-//                correctMarkIndicator.setTextColor(Color.GREEN)
-                wrongMarkIndicator.text = "Wrong answers - " + noOfWrongAnswers.toString()
-//                wrongMarkIndicator.setTextColor(Color.RED)
+                Timer("Delay", false).schedule(2000) {
+                    val score = Intent(this@Game, ScoreViewer::class.java)
+                    score.putExtra("correct", "Number of correct answers - $noOfCorrectAnswers")
+                    score.putExtra("wrong", "Number of wrong answers - $noOfWrongAnswers")
+                    startActivity(score)
+                }
             }
         }.start()
     }
