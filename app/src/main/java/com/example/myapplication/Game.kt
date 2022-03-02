@@ -45,8 +45,8 @@ class Game : AppCompatActivity() {
         var firstNumber1 = 1 + Random().nextInt(20)
         var firstNumber2 = 1 + Random().nextInt(20)
 
-        var numOfTerms1 = 1 + Random().nextInt(4)
-        var numOfTerms2 = 1 + Random().nextInt(4)
+        var numOfTerms1 = 1 + Random().nextInt(3)
+        var numOfTerms2 = 1 + Random().nextInt(3)
 
         val correctStatus = findViewById<TextView>(R.id.correctness)
 
@@ -327,6 +327,6 @@ class Game : AppCompatActivity() {
     }
 
     fun noOfTermsGenerator(): Int {
-        return 1 + Random().nextInt(4)
+        return 1 + Random().nextInt(3)
     }
 }
