@@ -15,6 +15,8 @@ import kotlin.concurrent.schedule
 
 class Game : AppCompatActivity() {
 
+    //Initializing the variables
+
     var expression1 = "Expression 01"
     var expression2 = "Expression 02"
 
@@ -35,42 +37,49 @@ class Game : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
 
-        startTimer()
+        startTimer()    //starting the timer
 
+        //Initializing the text views
         val expression01 = findViewById<TextView>(R.id.exp1)
         val expression02 = findViewById<TextView>(R.id.exp2)
+        val correctStatus = findViewById<TextView>(R.id.correctness)
 
+        //Initializing the buttons
         val grtBtn = findViewById<Button>(R.id.greater)
         val eqlBtn = findViewById<Button>(R.id.equal)
         val lesBtn = findViewById<Button>(R.id.less)
 
-        var firstNumber1 = 1 + Random().nextInt(20)
-        var firstNumber2 = 1 + Random().nextInt(20)
+        //Generating the required random numbers
 
-        var numOfTerms1 = 1 + Random().nextInt(3)
-        var numOfTerms2 = 1 + Random().nextInt(3)
+        val firstNumber1 = 1 + Random().nextInt(20)
+        val firstNumber2 = 1 + Random().nextInt(20)
 
-        val correctStatus = findViewById<TextView>(R.id.correctness)
+        val numOfTerms1 = 1 + Random().nextInt(3)
+        val numOfTerms2 = 1 + Random().nextInt(3)
 
+        //Calling the methods to generate the two expressions
         generateExpression1(firstNumber1.toString(), numOfTerms1, expression01, firstNumber1)
         generateExpression2(firstNumber2.toString(), numOfTerms2, expression02,firstNumber2)
 
+        //Setting the on click action listener to the 'greater' button
         grtBtn.setOnClickListener {
 
-            if (!finish) {
+            if (!finish) {  //Checking whether the time is over or not
                 if (value1 > value2) {
+
                     correctStatus.text = "CORRECT!"
                     correctStatus.setTextColor(Color.parseColor("green"))
 
                     noOfCorrectAnswers++
                     correctValue++
 
-                    if (correctValue == 5) {
+                    if (correctValue == 5) {    //Checking whether the number of correct answers are equal to 5 for the adding 10 seconds purpose
                         Toast.makeText(applicationContext, "10 seconds added.", Toast.LENGTH_LONG).show()
                         counter += 10
-                        correctValue -= 5
+                        correctValue -= 5   //Resetting the value
                     }
 
+                    // Generating the 2 expressions
                     val number1 = firstNoGenarator()
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
@@ -83,6 +92,7 @@ class Game : AppCompatActivity() {
                     noOfWrongAnswers++
                     correctStatus.setTextColor(Color.parseColor("red"))
 
+                    // Generating the 2 expressions
                     val number1 = firstNoGenarator()
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
@@ -96,21 +106,23 @@ class Game : AppCompatActivity() {
             }
         }
 
+        //Setting the on click action listener to the '==' button
         eqlBtn.setOnClickListener {
 
-            if (!finish) {
+            if (!finish) {  //Checking whether the time is over or not
                 if (value1 == value2) {
                     correctStatus.text = "CORRECT!"
                     correctStatus.setTextColor(Color.parseColor("green"))
                     noOfCorrectAnswers++
                     correctValue++
 
-                    if (correctValue == 5) {
+                    if (correctValue == 5) {    //Checking whether the number of correct answers are equal to 5 for the adding 10 seconds purpose
                         Toast.makeText(applicationContext, "10 seconds added.", Toast.LENGTH_LONG).show()
                         counter += 10
-                        correctValue -= 5
+                        correctValue -= 5   //Resetting the value
                     }
 
+                    // Generating the 2 expressions
                     val number1 = firstNoGenarator()
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
@@ -123,6 +135,7 @@ class Game : AppCompatActivity() {
                     noOfWrongAnswers++
                     correctStatus.setTextColor(Color.parseColor("red"))
 
+                    // Generating the 2 expressions
                     val number1 = firstNoGenarator()
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
@@ -137,9 +150,10 @@ class Game : AppCompatActivity() {
             }
         }
 
+        //Setting the on click action listener to the 'less' button
         lesBtn.setOnClickListener {
 
-            if (!finish) {
+            if (!finish) {  //Checking whether the time is over or not
                 if (value1 < value2) {
                     correctStatus.text = "CORRECT!"
                     correctStatus.setTextColor(Color.parseColor("green"))
@@ -149,9 +163,10 @@ class Game : AppCompatActivity() {
                     if (correctValue == 5) {
                         Toast.makeText(applicationContext, "10 seconds added.", Toast.LENGTH_LONG).show()
                         counter += 10
-                        correctValue -= 5
+                        correctValue -= 5   //Resetting the value
                     }
 
+                    // Generating the 2 expressions
                     val number1 = firstNoGenarator()
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
@@ -164,6 +179,7 @@ class Game : AppCompatActivity() {
                     noOfWrongAnswers++
                     correctStatus.setTextColor(Color.parseColor("red"))
 
+                    // Generating the 2 expressions
                     val number1 = firstNoGenarator()
                     val number2 = firstNoGenarator()
                     val terms1 = noOfTermsGenerator()
@@ -181,11 +197,14 @@ class Game : AppCompatActivity() {
     }
 
     fun startTimer() {
+        //Method used to setup the timer
         //Referenced from: https://www.tutorialspoint.com/how-to-set-a-timer-in-android-using-kotlin
 
         val timer = findViewById<TextView>(R.id.timer)
+
         object : CountDownTimer(500000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
+
                 timer.text = counter.toString()
                 if (counter == 0) {
                     cancel()
@@ -196,11 +215,14 @@ class Game : AppCompatActivity() {
             }
             @SuppressLint("SetTextI18n")
             override fun onFinish() {
+                //After the timer reach to 0, this part will execute
+
                 timer.text = "Time Over!"
                 timer.setTextColor(Color.RED)
                 finish = true
 
                 Timer("Delay", false).schedule(2000) {
+
                     val score = Intent(this@Game, ScoreViewer::class.java)
                     score.putExtra("correct", "Number of correct answers - $noOfCorrectAnswers")
                     score.putExtra("wrong", "Number of wrong answers - $noOfWrongAnswers")
@@ -215,14 +237,14 @@ class Game : AppCompatActivity() {
         var total = tot
         var numOfTerms = numOfTerms1
 
-        val operators: List<String> = listOf("+", "-", "*", "/")
-        val operatorIndex = Random().nextInt(4)
+        val operators: List<String> = listOf("+", "-", "*", "/")    //List of operators
+        val operatorIndex = Random().nextInt(operators.size)    //Generating a number to get the operator randomly
 
-        var secondNumber = 0
+        var secondNumber: Int
         var flag = true
-        while (flag) {
-            secondNumber = 1 + Random().nextInt(20)
 
+        while (flag) {
+            secondNumber = 1+ Random().nextInt(20)
             when (operatorIndex) {
                 0 -> {
                     total += secondNumber
@@ -238,16 +260,17 @@ class Game : AppCompatActivity() {
                 }
                 else -> {
                     if (total % secondNumber == 0) {
-                        flag = false
                         total /= secondNumber
+                        flag = false
                     } else {
                         flag = true
                         continue
                     }
                 }
             }
-            expression1 = firstNumber1 + operators[operatorIndex] + secondNumber
+            expression2 = firstNumber1 + operators[operatorIndex] + secondNumber
         }
+
 
         if (total > 100) {
             val number1 = firstNoGenarator()
@@ -272,7 +295,7 @@ class Game : AppCompatActivity() {
         val operators: List<String> = listOf("+", "-", "*", "/")
         val operatorIndex = Random().nextInt(4)
 
-        var secondNumber = 0
+        var secondNumber: Int
         var flag = true
         while (flag) {
             secondNumber = 1+ Random().nextInt(20)
@@ -301,6 +324,7 @@ class Game : AppCompatActivity() {
             }
             expression2 = firstNumber2 + operators[operatorIndex] + secondNumber
         }
+
         if (total > 100) {
             val number2 = firstNoGenarator()
             val terms2 = noOfTermsGenerator()

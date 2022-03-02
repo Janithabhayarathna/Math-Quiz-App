@@ -16,15 +16,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Initializing the buttons
         val aboutBtn = findViewById<Button>(R.id.abtBtn)
         val nextGameBtn = findViewById<Button>(R.id.gameBtn)
 
+        //Setting up the on click action listener for the about button
         aboutBtn.setOnClickListener {
+
+            //Setting the popup window
             val popup = PopupWindow(this)
             val view = layoutInflater.inflate(R.layout.popup, null)
             popup.contentView = view
             val text = view.findViewById<TextView>(R.id.para)
             text.text = "Author; \nStudent id: w1820253 / 20200571 \nName: J C Abhayarathna \n\n\t I confirm that I understand what plagiarism is and have read and understood the section on Assessment Offences in the EssentialInformation for Students. The work that I have submitted is entirely my own. Any work from other authors is duly referenced and acknowledged."
+
             text.setOnClickListener {
                 popup.dismiss()
             }
@@ -32,10 +37,10 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        //Setting up the on click action listener for the next button
         nextGameBtn.setOnClickListener {
             val newGamer = Intent(this, Game::class.java)
             startActivity(newGamer)
         }
     }
-
 }
