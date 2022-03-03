@@ -10,4 +10,8 @@
     <string name="textview">TextView</string>
     <string name="about">About</string>
     <string name="new_game">New Game</string>
+    <string name="correct1">correct1</string>
+    <string name="wrong">wrong</string>
+    <string name="logo">Logo</string>
+    <string name="creatordp">creatorDP</string>
 </resources>

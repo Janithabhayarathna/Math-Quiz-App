@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import java.util.*
 import android.os.CountDownTimer
 import android.widget.Toast
+import java.util.*
 import java.util.Timer
 import kotlin.concurrent.schedule
 
@@ -224,6 +224,7 @@ class Game : AppCompatActivity() {
                 Timer("Delay", false).schedule(2000) {
 
                     val score = Intent(this@Game, ScoreViewer::class.java)
+                    //Passing the values to the score viewer window
                     score.putExtra("correct", "Number of correct answers - $noOfCorrectAnswers")
                     score.putExtra("wrong", "Number of wrong answers - $noOfWrongAnswers")
                     startActivity(score)
@@ -233,6 +234,7 @@ class Game : AppCompatActivity() {
     }
 
     fun generateExpression1(firstNumber1: String, numOfTerms1: Int, expression01: TextView, tot: Int) {
+        //Method used to generate the expression 1
 
         var total = tot
         var numOfTerms = numOfTerms1
@@ -244,6 +246,7 @@ class Game : AppCompatActivity() {
         var flag = true
 
         while (flag) {
+            //Used a while loop to generate the second term until it is a factor of first number
             secondNumber = 1+ Random().nextInt(20)
             when (operatorIndex) {
                 0 -> {
@@ -268,11 +271,11 @@ class Game : AppCompatActivity() {
                     }
                 }
             }
-            expression2 = firstNumber1 + operators[operatorIndex] + secondNumber
+            expression1 = firstNumber1 + operators[operatorIndex] + secondNumber
         }
 
-
         if (total > 100) {
+            //Used to check whether the each part of the expression less than or equal to 100
             val number1 = firstNoGenarator()
             val terms1 = noOfTermsGenerator()
             generateExpression1(number1.toString(), terms1, expression01, number1)
@@ -281,7 +284,8 @@ class Game : AppCompatActivity() {
         numOfTerms--
 
         if (numOfTerms > 0) {
-            generateExpression1("("+expression1+")",numOfTerms, expression01,total)
+            //Used a recursive until the number of terms become 0
+            generateExpression1("("+expression1+")",numOfTerms, expression01, total)
         } else {
             value1 = total
             expression01.text = expression1
@@ -289,6 +293,7 @@ class Game : AppCompatActivity() {
     }
 
     fun generateExpression2(firstNumber2: String, numOfTerms2: Int, expression02: TextView, tot: Int) {
+        //Method used to generate the expression 2
 
         var total = tot
         var numOfTerms = numOfTerms2
@@ -298,6 +303,7 @@ class Game : AppCompatActivity() {
         var secondNumber: Int
         var flag = true
         while (flag) {
+            //Used a while loop to generate the second term until it is a factor of first number
             secondNumber = 1+ Random().nextInt(20)
             when (operatorIndex) {
                 0 -> {
@@ -326,6 +332,7 @@ class Game : AppCompatActivity() {
         }
 
         if (total > 100) {
+            //Used to check whether the each part of the expression less than or equal to 100
             val number2 = firstNoGenarator()
             val terms2 = noOfTermsGenerator()
             generateExpression2(number2.toString(), terms2, expression02, number2)
@@ -334,18 +341,19 @@ class Game : AppCompatActivity() {
         numOfTerms--
 
         if (numOfTerms > 0) {
-            generateExpression2("("+expression2+")",numOfTerms, expression02, total)
+            //Used a recursive until the number of terms become 0
+            generateExpression2("($expression2)",numOfTerms, expression02, total)
         } else {
             value2 = total
             expression02.text = expression2
         }
     }
 
-    fun firstNoGenarator(): Int {
+    private fun firstNoGenarator(): Int {
         return 1 + Random().nextInt(20)
     }
 
-    fun noOfTermsGenerator(): Int {
+    private fun noOfTermsGenerator(): Int {
         return 1 + Random().nextInt(3)
     }
 }

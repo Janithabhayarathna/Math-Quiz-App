@@ -14,6 +14,7 @@ class ScoreViewer : AppCompatActivity() {
         val correctCount = findViewById<TextView>(R.id.correctCount)
         val wrongCount = findViewById<TextView>(R.id.wrongCount)
 
+        //Getting the data from the previous window
         val correct = intent.getStringExtra("correct")
         val wrong = intent.getStringExtra("wrong")
 
@@ -27,5 +28,6 @@ class ScoreViewer : AppCompatActivity() {
         super.onBackPressed()
         val back = Intent(this , MainActivity::class.java)
         startActivity(back)
+        //When the user clicks the back button program goes to the main window
     }
 }
