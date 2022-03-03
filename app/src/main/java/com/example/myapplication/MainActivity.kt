@@ -5,10 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.PopupWindow
-import android.widget.TextView
+import android.widget.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,6 +46,8 @@ class MainActivity : AppCompatActivity() {
                     selected = false
                 }
                 popup.showAtLocation(view, Gravity.CENTER, 0, 0)
+            } else {
+                Toast.makeText(applicationContext, "Already in the about window.", Toast.LENGTH_SHORT).show()
             }
         }
 

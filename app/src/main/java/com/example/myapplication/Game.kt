@@ -206,11 +206,17 @@ class Game : AppCompatActivity() {
             override fun onTick(millisUntilFinished: Long) {
 
                 timer.text = counter.toString()
+                timer.setTextColor(Color.BLUE)
+
                 if (counter == 0) {
                     cancel()
                     onFinish()
                 }
-                timer.setTextColor(Color.BLUE)
+
+                if (counter <= 10) {
+                    timer.setTextColor(Color.RED)
+                }
+
                 counter--
             }
             @SuppressLint("SetTextI18n")

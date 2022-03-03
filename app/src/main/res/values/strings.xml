@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Math πrates</string>
     <string name="greater">Greater</string>
     <string name="equal">==</string>
     <string name="less">LESS</string>
@@ -14,4 +14,5 @@
     <string name="wrong">wrong</string>
     <string name="logo">Logo</string>
     <string name="creatordp">creatorDP</string>
+    <string name="todo">TODO</string>
 </resources>
