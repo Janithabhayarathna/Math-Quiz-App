@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.os.CountDownTimer
+import android.widget.ImageView
 import android.widget.Toast
 import java.util.*
 import java.util.Timer
@@ -49,6 +50,9 @@ class Game : AppCompatActivity() {
         val eqlBtn = findViewById<Button>(R.id.equal)
         val lesBtn = findViewById<Button>(R.id.less)
 
+        val timerImage = findViewById<ImageView>(R.id.timerImage)
+        timerImage.setImageResource(resources.getIdentifier("timer", "drawable", "com.example.myapplication"))
+
         //Generating the required random numbers
 
         val firstNumber1 = 1 + Random().nextInt(20)
@@ -79,26 +83,30 @@ class Game : AppCompatActivity() {
                         correctValue -= 5   //Resetting the value
                     }
 
-                    // Generating the 2 expressions
-                    val number1 = firstNoGenarator()
-                    val number2 = firstNoGenarator()
-                    val terms1 = noOfTermsGenerator()
-                    val terms2 = noOfTermsGenerator()
-                    generateExpression1(number1.toString(), terms1, expression01, number1)
-                    generateExpression2(number2.toString(), terms2, expression02, number2)
+                    Timer("Delay", false).schedule(2000) { }
+
+                        // Generating the 2 expressions
+                        val number1 = firstNoGenerator()
+                        val number2 = firstNoGenerator()
+                        val terms1 = noOfTermsGenerator()
+                        val terms2 = noOfTermsGenerator()
+                        generateExpression1(number1.toString(), terms1, expression01, number1)
+                        generateExpression2(number2.toString(), terms2, expression02, number2)
 
                 } else {
                     correctStatus.text = "WRONG!"
                     noOfWrongAnswers++
                     correctStatus.setTextColor(Color.parseColor("red"))
 
-                    // Generating the 2 expressions
-                    val number1 = firstNoGenarator()
-                    val number2 = firstNoGenarator()
-                    val terms1 = noOfTermsGenerator()
-                    val terms2 = noOfTermsGenerator()
-                    generateExpression1(number1.toString(), terms1, expression01, number1)
-                    generateExpression2(number2.toString(), terms2, expression02, number2)
+                    Timer("Delay", false).schedule(2000) { }
+
+                        // Generating the 2 expressions
+                        val number1 = firstNoGenerator()
+                        val number2 = firstNoGenerator()
+                        val terms1 = noOfTermsGenerator()
+                        val terms2 = noOfTermsGenerator()
+                        generateExpression1(number1.toString(), terms1, expression01, number1)
+                        generateExpression2(number2.toString(), terms2, expression02, number2)
                 }
             } else {
                 Toast.makeText(applicationContext, "Time over!", Toast.LENGTH_LONG).show()
@@ -122,26 +130,30 @@ class Game : AppCompatActivity() {
                         correctValue -= 5   //Resetting the value
                     }
 
-                    // Generating the 2 expressions
-                    val number1 = firstNoGenarator()
-                    val number2 = firstNoGenarator()
-                    val terms1 = noOfTermsGenerator()
-                    val terms2 = noOfTermsGenerator()
-                    generateExpression1(number1.toString(), terms1, expression01, number1)
-                    generateExpression2(number2.toString(), terms2, expression02, number2)
+                    Timer("Delay", false).schedule(2000) { }
+
+                        // Generating the 2 expressions
+                        val number1 = firstNoGenerator()
+                        val number2 = firstNoGenerator()
+                        val terms1 = noOfTermsGenerator()
+                        val terms2 = noOfTermsGenerator()
+                        generateExpression1(number1.toString(), terms1, expression01, number1)
+                        generateExpression2(number2.toString(), terms2, expression02, number2)
 
                 } else {
                     correctStatus.text = "WRONG!"
                     noOfWrongAnswers++
                     correctStatus.setTextColor(Color.parseColor("red"))
 
-                    // Generating the 2 expressions
-                    val number1 = firstNoGenarator()
-                    val number2 = firstNoGenarator()
-                    val terms1 = noOfTermsGenerator()
-                    val terms2 = noOfTermsGenerator()
-                    generateExpression1(number1.toString(), terms1, expression01, number1)
-                    generateExpression2(number2.toString(), terms2, expression02, number2)
+                    Timer("Delay", false).schedule(2000) { }
+
+                        // Generating the 2 expressions
+                        val number1 = firstNoGenerator()
+                        val number2 = firstNoGenerator()
+                        val terms1 = noOfTermsGenerator()
+                        val terms2 = noOfTermsGenerator()
+                        generateExpression1(number1.toString(), terms1, expression01, number1)
+                        generateExpression2(number2.toString(), terms2, expression02, number2)
 
                 }
             } else {
@@ -166,13 +178,15 @@ class Game : AppCompatActivity() {
                         correctValue -= 5   //Resetting the value
                     }
 
-                    // Generating the 2 expressions
-                    val number1 = firstNoGenarator()
-                    val number2 = firstNoGenarator()
-                    val terms1 = noOfTermsGenerator()
-                    val terms2 = noOfTermsGenerator()
-                    generateExpression1(number1.toString(), terms1, expression01, number1)
-                    generateExpression2(number2.toString(), terms2, expression02, number2)
+                    Timer("Delay", false).schedule(2000) { }
+
+                        // Generating the 2 expressions
+                        val number1 = firstNoGenerator()
+                        val number2 = firstNoGenerator()
+                        val terms1 = noOfTermsGenerator()
+                        val terms2 = noOfTermsGenerator()
+                        generateExpression1(number1.toString(), terms1, expression01, number1)
+                        generateExpression2(number2.toString(), terms2, expression02, number2)
 
                 } else {
                     correctStatus.text = "WRONG!"
@@ -180,8 +194,8 @@ class Game : AppCompatActivity() {
                     correctStatus.setTextColor(Color.parseColor("red"))
 
                     // Generating the 2 expressions
-                    val number1 = firstNoGenarator()
-                    val number2 = firstNoGenarator()
+                    val number1 = firstNoGenerator()
+                    val number2 = firstNoGenerator()
                     val terms1 = noOfTermsGenerator()
                     val terms2 = noOfTermsGenerator()
                     generateExpression1(number1.toString(), terms1, expression01, number1)
@@ -206,7 +220,7 @@ class Game : AppCompatActivity() {
             override fun onTick(millisUntilFinished: Long) {
 
                 timer.text = counter.toString()
-                timer.setTextColor(Color.BLUE)
+                timer.setTextColor(Color.DKGRAY)
 
                 if (counter == 0) {
                     cancel()
@@ -223,7 +237,9 @@ class Game : AppCompatActivity() {
             override fun onFinish() {
                 //After the timer reach to 0, this part will execute
 
-                timer.text = "Time Over!"
+                Toast.makeText(applicationContext, "Time over!", Toast.LENGTH_SHORT).show()
+
+                timer.text = "0!"
                 timer.setTextColor(Color.RED)
                 finish = true
 
@@ -231,8 +247,8 @@ class Game : AppCompatActivity() {
 
                     val score = Intent(this@Game, ScoreViewer::class.java)
                     //Passing the values to the score viewer window
-                    score.putExtra("correct", "Number of correct answers - $noOfCorrectAnswers")
-                    score.putExtra("wrong", "Number of wrong answers - $noOfWrongAnswers")
+                    score.putExtra("correct", "✔Number of correct answers - $noOfCorrectAnswers")
+                    score.putExtra("wrong", "❌Number of wrong answers - $noOfWrongAnswers")
                     startActivity(score)
                 }
             }
@@ -282,7 +298,7 @@ class Game : AppCompatActivity() {
 
         if (total > 100) {
             //Used to check whether the each part of the expression less than or equal to 100
-            val number1 = firstNoGenarator()
+            val number1 = firstNoGenerator()
             val terms1 = noOfTermsGenerator()
             generateExpression1(number1.toString(), terms1, expression01, number1)
         }
@@ -291,10 +307,11 @@ class Game : AppCompatActivity() {
 
         if (numOfTerms > 0) {
             //Used a recursive until the number of terms become 0
-            generateExpression1("("+expression1+")",numOfTerms, expression01, total)
+            generateExpression1("($expression1)",numOfTerms, expression01, total)
         } else {
             value1 = total
             expression01.text = expression1
+            expression01.setTextColor(Color.BLUE)
         }
     }
 
@@ -339,7 +356,7 @@ class Game : AppCompatActivity() {
 
         if (total > 100) {
             //Used to check whether the each part of the expression less than or equal to 100
-            val number2 = firstNoGenarator()
+            val number2 = firstNoGenerator()
             val terms2 = noOfTermsGenerator()
             generateExpression2(number2.toString(), terms2, expression02, number2)
         }
@@ -352,10 +369,11 @@ class Game : AppCompatActivity() {
         } else {
             value2 = total
             expression02.text = expression2
+            expression02.setTextColor(Color.BLUE)
         }
     }
 
-    private fun firstNoGenarator(): Int {
+    private fun firstNoGenerator(): Int {
         return 1 + Random().nextInt(20)
     }
 
