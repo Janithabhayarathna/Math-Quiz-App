@@ -248,7 +248,7 @@ class Game : AppCompatActivity() {
                     val score = Intent(this@Game, ScoreViewer::class.java)
                     //Passing the values to the score viewer window
                     score.putExtra("correct", "✔Number of correct answers - $noOfCorrectAnswers")
-                    score.putExtra("wrong", "❌Number of wrong answers - $noOfWrongAnswers")
+                    score.putExtra("wrong", "⛔Number of wrong answers - $noOfWrongAnswers")
                     startActivity(score)
                 }
             }
