@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import android.os.CountDownTimer
+import android.os.Handler
 import android.widget.ImageView
 import android.widget.Toast
 import java.util.*
@@ -32,6 +33,8 @@ class Game : AppCompatActivity() {
     var counter = 50
     var finish = false
 
+    var questionNumber = 0
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -49,6 +52,10 @@ class Game : AppCompatActivity() {
         val grtBtn = findViewById<Button>(R.id.greater)
         val eqlBtn = findViewById<Button>(R.id.equal)
         val lesBtn = findViewById<Button>(R.id.less)
+
+        grtBtn.isEnabled = true
+        eqlBtn.isEnabled = true
+        lesBtn.isEnabled = true
 
         val timerImage = findViewById<ImageView>(R.id.timerImage)
         timerImage.setImageResource(resources.getIdentifier("timer", "drawable", "com.example.myapplication"))
@@ -68,6 +75,9 @@ class Game : AppCompatActivity() {
         //Setting the on click action listener to the 'greater' button
         grtBtn.setOnClickListener {
 
+            eqlBtn.isEnabled = false
+            lesBtn.isEnabled = false
+
             if (!finish) {  //Checking whether the time is over or not
                 if (value1 > value2) {
 
@@ -83,8 +93,12 @@ class Game : AppCompatActivity() {
                         correctValue -= 5   //Resetting the value
                     }
 
-                    Timer("Delay", false).schedule(2000) { }
-
+                    Handler().postDelayed({
+                        correctStatus.text = " "
+                        grtBtn.isEnabled = true
+                        eqlBtn.isEnabled = true
+                        lesBtn.isEnabled = true
+                        Toast.makeText(applicationContext, "Qusetion $questionNumber", Toast.LENGTH_SHORT).show()
                         // Generating the 2 expressions
                         val number1 = firstNoGenerator()
                         val number2 = firstNoGenerator()
@@ -92,14 +106,19 @@ class Game : AppCompatActivity() {
                         val terms2 = noOfTermsGenerator()
                         generateExpression1(number1.toString(), terms1, expression01, number1)
                         generateExpression2(number2.toString(), terms2, expression02, number2)
+                    }, 1500)
 
                 } else {
                     correctStatus.text = "WRONG!"
                     noOfWrongAnswers++
                     correctStatus.setTextColor(Color.parseColor("red"))
 
-                    Timer("Delay", false).schedule(2000) { }
-
+                    Handler().postDelayed({
+                        correctStatus.text = " "
+                        grtBtn.isEnabled = true
+                        eqlBtn.isEnabled = true
+                        lesBtn.isEnabled = true
+                        Toast.makeText(applicationContext, "Qusetion $questionNumber", Toast.LENGTH_SHORT).show()
                         // Generating the 2 expressions
                         val number1 = firstNoGenerator()
                         val number2 = firstNoGenerator()
@@ -107,6 +126,7 @@ class Game : AppCompatActivity() {
                         val terms2 = noOfTermsGenerator()
                         generateExpression1(number1.toString(), terms1, expression01, number1)
                         generateExpression2(number2.toString(), terms2, expression02, number2)
+                    }, 1500)
                 }
             } else {
                 Toast.makeText(applicationContext, "Time over!", Toast.LENGTH_LONG).show()
@@ -116,6 +136,9 @@ class Game : AppCompatActivity() {
 
         //Setting the on click action listener to the '==' button
         eqlBtn.setOnClickListener {
+
+            grtBtn.isEnabled = false
+            lesBtn.isEnabled = false
 
             if (!finish) {  //Checking whether the time is over or not
                 if (value1 == value2) {
@@ -130,8 +153,12 @@ class Game : AppCompatActivity() {
                         correctValue -= 5   //Resetting the value
                     }
 
-                    Timer("Delay", false).schedule(2000) { }
-
+                    Handler().postDelayed({
+                        correctStatus.text = " "
+                        grtBtn.isEnabled = true
+                        eqlBtn.isEnabled = true
+                        lesBtn.isEnabled = true
+                        Toast.makeText(applicationContext, "Qusetion $questionNumber", Toast.LENGTH_SHORT).show()
                         // Generating the 2 expressions
                         val number1 = firstNoGenerator()
                         val number2 = firstNoGenerator()
@@ -139,14 +166,19 @@ class Game : AppCompatActivity() {
                         val terms2 = noOfTermsGenerator()
                         generateExpression1(number1.toString(), terms1, expression01, number1)
                         generateExpression2(number2.toString(), terms2, expression02, number2)
+                    }, 1500)
 
                 } else {
                     correctStatus.text = "WRONG!"
                     noOfWrongAnswers++
                     correctStatus.setTextColor(Color.parseColor("red"))
 
-                    Timer("Delay", false).schedule(2000) { }
-
+                    Handler().postDelayed({
+                        correctStatus.text = " "
+                        grtBtn.isEnabled = true
+                        eqlBtn.isEnabled = true
+                        lesBtn.isEnabled = true
+                        Toast.makeText(applicationContext, "Qusetion $questionNumber", Toast.LENGTH_SHORT).show()
                         // Generating the 2 expressions
                         val number1 = firstNoGenerator()
                         val number2 = firstNoGenerator()
@@ -154,6 +186,7 @@ class Game : AppCompatActivity() {
                         val terms2 = noOfTermsGenerator()
                         generateExpression1(number1.toString(), terms1, expression01, number1)
                         generateExpression2(number2.toString(), terms2, expression02, number2)
+                    }, 1500)
 
                 }
             } else {
@@ -164,6 +197,9 @@ class Game : AppCompatActivity() {
 
         //Setting the on click action listener to the 'less' button
         lesBtn.setOnClickListener {
+
+            grtBtn.isEnabled = false
+            eqlBtn.isEnabled = false
 
             if (!finish) {  //Checking whether the time is over or not
                 if (value1 < value2) {
@@ -178,8 +214,12 @@ class Game : AppCompatActivity() {
                         correctValue -= 5   //Resetting the value
                     }
 
-                    Timer("Delay", false).schedule(2000) { }
-
+                    Handler().postDelayed({
+                        correctStatus.text = " "
+                        grtBtn.isEnabled = true
+                        eqlBtn.isEnabled = true
+                        lesBtn.isEnabled = true
+                        Toast.makeText(applicationContext, "Qusetion $questionNumber", Toast.LENGTH_SHORT).show()
                         // Generating the 2 expressions
                         val number1 = firstNoGenerator()
                         val number2 = firstNoGenerator()
@@ -187,19 +227,27 @@ class Game : AppCompatActivity() {
                         val terms2 = noOfTermsGenerator()
                         generateExpression1(number1.toString(), terms1, expression01, number1)
                         generateExpression2(number2.toString(), terms2, expression02, number2)
+                    }, 1500)
 
                 } else {
                     correctStatus.text = "WRONG!"
                     noOfWrongAnswers++
                     correctStatus.setTextColor(Color.parseColor("red"))
 
-                    // Generating the 2 expressions
-                    val number1 = firstNoGenerator()
-                    val number2 = firstNoGenerator()
-                    val terms1 = noOfTermsGenerator()
-                    val terms2 = noOfTermsGenerator()
-                    generateExpression1(number1.toString(), terms1, expression01, number1)
-                    generateExpression2(number2.toString(), terms2, expression02, number2)
+                    Handler().postDelayed({
+                        correctStatus.text = " "
+                        grtBtn.isEnabled = true
+                        eqlBtn.isEnabled = true
+                        lesBtn.isEnabled = true
+                        Toast.makeText(applicationContext, "Qusetion $questionNumber", Toast.LENGTH_SHORT).show()
+                        // Generating the 2 expressions
+                        val number1 = firstNoGenerator()
+                        val number2 = firstNoGenerator()
+                        val terms1 = noOfTermsGenerator()
+                        val terms2 = noOfTermsGenerator()
+                        generateExpression1(number1.toString(), terms1, expression01, number1)
+                        generateExpression2(number2.toString(), terms2, expression02, number2)
+                    }, 1500)
                 }
 
             } else {
@@ -257,6 +305,8 @@ class Game : AppCompatActivity() {
 
     fun generateExpression1(firstNumber1: String, numOfTerms1: Int, expression01: TextView, tot: Int) {
         //Method used to generate the expression 1
+
+        questionNumber++
 
         var total = tot
         var numOfTerms = numOfTerms1
