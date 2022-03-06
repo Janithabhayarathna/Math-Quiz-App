@@ -6,6 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.widget.*
+import androidx.constraintlayout.widget.ConstraintLayout
+
+/**
+ * Name: Janith Chanaka Abhayarathna.
+ * Student ID: w1830253 / 20200571
+ * Mobile Application Development Course Work 01.
+ */
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
                 val dp = view.findViewById<ImageView>(R.id.creator)
                 val text = view.findViewById<TextView>(R.id.para)
+                val popupFrame = view.findViewById<ConstraintLayout>(R.id.frame)
 
                 dp.setImageResource(
                     resources.getIdentifier(
@@ -40,9 +48,10 @@ class MainActivity : AppCompatActivity() {
                 )
                 text.text =
                     "Author; \nStudent id: w1820253 / 20200571 \nName: J C Abhayarathna \n\n\t I confirm that I understand what plagiarism is and have read and understood the section on Assessment Offences in the EssentialInformation for Students. The work that I have submitted is entirely my own. Any work from other authors is duly referenced and acknowledged."
+
                 selected = true
 
-                text.setOnClickListener {
+                popupFrame.setOnClickListener {
                     popup.dismiss()
                     selected = false
                 }

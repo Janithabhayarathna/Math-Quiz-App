@@ -81,7 +81,6 @@ class Game : AppCompatActivity() {
 
             if (!finish) {  //Checking whether the time is over or not
                 if (value1 > value2) {
-
                     ifCorrect(expression01, expression02, correctStatus)
                     Handler().postDelayed({
                         grtBtn.isEnabled = true
@@ -102,9 +101,6 @@ class Game : AppCompatActivity() {
                 correctStatus.text = " "
             }
 
-            fun enablingButtons() {
-
-            }
         }
 
         //Setting the on click action listener to the '==' button
@@ -226,7 +222,7 @@ class Game : AppCompatActivity() {
         var flag = true
 
         while (flag) {
-            //Used a while loop to generate the second term until it is a factor of first number
+            //Used a while loop to generate the second term until it is a factor of the first number
             secondNumber = 1+ Random().nextInt(20)
             when (operatorIndex) {
                 0 -> {
@@ -356,6 +352,7 @@ class Game : AppCompatActivity() {
         Handler().postDelayed({
             correctStatus.text = " "
             Toast.makeText(applicationContext, "Qusetion $questionNumber", Toast.LENGTH_SHORT).show()
+
             // Generating the 2 expressions
             val number1 = firstNoGenerator()
             val number2 = firstNoGenerator()

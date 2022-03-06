@@ -17,10 +17,6 @@
             android:name=".Game"
             android:configChanges="orientation|screenSize"
             android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".PopUpWindow"-->
-<!--            android:configChanges="orientation|screenSize"-->
-<!--            android:exported="false" />-->
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|screenSize"
