@@ -11,15 +11,12 @@
         android:theme="@style/Theme.MyApplication">
         <activity
             android:name=".ScoreViewer"
-            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
             android:name=".Game"
-            android:configChanges="orientation|screenSize"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:configChanges="orientation|screenSize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
