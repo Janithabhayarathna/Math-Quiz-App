@@ -19,6 +19,9 @@ class Game : AppCompatActivity() {
 
     //Initializing the variables
 
+    lateinit var expression01:TextView
+    lateinit var expression02:TextView
+
     var expression1 = "Expression 01"
     var expression2 = "Expression 02"
 
@@ -44,8 +47,8 @@ class Game : AppCompatActivity() {
         startTimer()    //starting the timer
 
         //Initializing the text views
-        val expression01 = findViewById<TextView>(R.id.exp1)
-        val expression02 = findViewById<TextView>(R.id.exp2)
+        expression01 = findViewById<TextView>(R.id.exp1)
+        expression02 = findViewById<TextView>(R.id.exp2)
         val correctStatus = findViewById<TextView>(R.id.correctness)
 
         //Initializing the buttons
@@ -86,14 +89,14 @@ class Game : AppCompatActivity() {
                         grtBtn.isEnabled = true
                         eqlBtn.isEnabled = true
                         lesBtn.isEnabled = true
-                    }, 1500)
+                    }, 1000)
                 } else {
                     ifWrong(expression01, expression02, correctStatus)
                     Handler().postDelayed({
                         grtBtn.isEnabled = true
                         eqlBtn.isEnabled = true
                         lesBtn.isEnabled = true
-                    }, 1500)
+                    }, 1000)
                 }
 
             } else {
@@ -117,14 +120,14 @@ class Game : AppCompatActivity() {
                         grtBtn.isEnabled = true
                         eqlBtn.isEnabled = true
                         lesBtn.isEnabled = true
-                    }, 1500)
+                    }, 1000)
                 } else {
                     ifWrong(expression01, expression02, correctStatus)
                     Handler().postDelayed({
                         grtBtn.isEnabled = true
                         eqlBtn.isEnabled = true
                         lesBtn.isEnabled = true
-                    }, 1500)
+                    }, 1000)
                 }
             } else {
                 Toast.makeText(applicationContext, "Time over!", Toast.LENGTH_LONG).show()
@@ -146,14 +149,14 @@ class Game : AppCompatActivity() {
                         grtBtn.isEnabled = true
                         eqlBtn.isEnabled = true
                         lesBtn.isEnabled = true
-                    }, 1500)
+                    }, 1000)
                 } else {
                     ifWrong(expression01, expression02, correctStatus)
                     Handler().postDelayed({
                         grtBtn.isEnabled = true
                         eqlBtn.isEnabled = true
                         lesBtn.isEnabled = true
-                    }, 1500)
+                    }, 1000)
                 }
 
             } else {
@@ -162,6 +165,35 @@ class Game : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun onSaveInstanceState(outState : Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("correct",noOfCorrectAnswers)
+        outState.putInt("incorrect",noOfWrongAnswers)
+        outState.putInt("correctValue",correctValue)
+        outState.putInt("counter",counter)
+
+        outState.putInt("value1",value1)
+        outState.putInt("value2",value2)
+        outState.putString("expression1",expression1)
+        outState.putString("expression2",expression2)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        noOfCorrectAnswers = savedInstanceState.getInt("correct")
+        noOfWrongAnswers = savedInstanceState.getInt("incorrect")
+        correctValue = savedInstanceState.getInt("correctValue")
+        counter = savedInstanceState.getInt("counter")
+
+        value1 = savedInstanceState.getInt("value1" )
+        value2 = savedInstanceState.getInt("value2")
+        expression1 = savedInstanceState.getString("expression1", null)
+        expression2 = savedInstanceState.getString("expression2", null)
+
+        expression01.text= expression1
+        expression02.text= expression2
     }
 
     fun startTimer() {
@@ -209,6 +241,9 @@ class Game : AppCompatActivity() {
         }.start()
     }
 
+    /**
+     *
+     */
     fun generateExpression1(firstNumber1: String, numOfTerms1: Int, expression01: TextView, tot: Int) {
         //Method used to generate the expression 1
 
@@ -360,7 +395,7 @@ class Game : AppCompatActivity() {
             val terms2 = noOfTermsGenerator()
             generateExpression1(number1.toString(), terms1, expression01, number1)
             generateExpression2(number2.toString(), terms2, expression02, number2)
-        }, 1500)
+        }, 1000)
     }
 
     @SuppressLint("SetTextI18n")
@@ -380,6 +415,6 @@ class Game : AppCompatActivity() {
             val terms2 = noOfTermsGenerator()
             generateExpression1(number1.toString(), terms1, expression01, number1)
             generateExpression2(number2.toString(), terms2, expression02, number2)
-        }, 1500)
+        }, 1000)
     }
 }
