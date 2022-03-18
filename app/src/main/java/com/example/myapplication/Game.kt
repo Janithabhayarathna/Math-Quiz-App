@@ -60,9 +60,6 @@ class Game : AppCompatActivity() {
         eqlBtn.isEnabled = true
         lesBtn.isEnabled = true
 
-        val timerImage = findViewById<ImageView>(R.id.timerImage)
-        timerImage.setImageResource(resources.getIdentifier("timer", "drawable", "com.example.myapplication"))
-
         //Generating the required random numbers
 
         val firstNumber1 = 1 + Random().nextInt(20)
@@ -173,7 +170,7 @@ class Game : AppCompatActivity() {
         outState.putInt("incorrect",noOfWrongAnswers)
         outState.putInt("correctValue",correctValue)
         outState.putInt("counter",counter)
-
+        outState.putInt("questionNumber",questionNumber)
         outState.putInt("value1",value1)
         outState.putInt("value2",value2)
         outState.putString("expression1",expression1)
@@ -182,15 +179,15 @@ class Game : AppCompatActivity() {
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        noOfCorrectAnswers = savedInstanceState.getInt("correct")
-        noOfWrongAnswers = savedInstanceState.getInt("incorrect")
-        correctValue = savedInstanceState.getInt("correctValue")
-        counter = savedInstanceState.getInt("counter")
-
-        value1 = savedInstanceState.getInt("value1" )
-        value2 = savedInstanceState.getInt("value2")
-        expression1 = savedInstanceState.getString("expression1", null)
-        expression2 = savedInstanceState.getString("expression2", null)
+        noOfCorrectAnswers = savedInstanceState.getInt("correct",0)
+        noOfWrongAnswers = savedInstanceState.getInt("incorrect",0)
+        correctValue = savedInstanceState.getInt("correctValue",0)
+        counter = savedInstanceState.getInt("counter",0)
+        questionNumber = savedInstanceState.getInt("questionNumber",1)
+        value1 = savedInstanceState.getInt("value1",0)
+        value2 = savedInstanceState.getInt("value2",0)
+        expression1 = savedInstanceState.getString("expression1", "exp01")
+        expression2 = savedInstanceState.getString("expression2", "exp02")
 
         expression01.text= expression1
         expression02.text= expression2
@@ -241,9 +238,7 @@ class Game : AppCompatActivity() {
         }.start()
     }
 
-    /**
-     *
-     */
+
     fun generateExpression1(firstNumber1: String, numOfTerms1: Int, expression01: TextView, tot: Int) {
         //Method used to generate the expression 1
 

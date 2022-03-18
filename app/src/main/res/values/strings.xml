@@ -14,9 +14,10 @@
     <string name="wrong">wrong</string>
     <string name="logo">Logo</string>
     <string name="creatordp">creatorDP</string>
-    <string name="todo">TODO</string>
+    <string name="todo1">TODO</string>
     <string name="your_progress">📈 Your progress</string>
     <string name="as_far_as_the_laws_of_mathematics_refer_to_reality_they_are_not_certain_and_as_far_as_they_are_certain_they_do_not_refer_to_reality_albert_einstein">As far as the laws of mathematics refer to reality, they are not certain, and as far as they are certain, they do not refer to reality. — Albert Einstein</string>
     <string name="time">Time</string>
     <string name="frontLogo">logo</string>
+    <string name="todo">TODO</string>
 </resources>
