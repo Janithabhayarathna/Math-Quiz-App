@@ -13,6 +13,7 @@ import android.widget.Toast
 import java.util.*
 import kotlin.concurrent.schedule
 
+@Suppress("DEPRECATION")
 class Game : AppCompatActivity() {
 
     //Initializing the variables
@@ -47,8 +48,8 @@ class Game : AppCompatActivity() {
         startTimer()    //starting the timer
 
         //Initializing the text views
-        expression01 = findViewById<TextView>(R.id.exp1)
-        expression02 = findViewById<TextView>(R.id.exp2)
+        expression01 = findViewById(R.id.exp1)
+        expression02 = findViewById(R.id.exp2)
         val correctStatus = findViewById<TextView>(R.id.correctness)
 
         //Initializing the buttons
@@ -209,6 +210,7 @@ class Game : AppCompatActivity() {
 
                 if (counter == 0) {
                     cancel()
+                    numberOfTheQuestion.text = " "
                     onFinish()
                 }
 
@@ -384,7 +386,7 @@ class Game : AppCompatActivity() {
 
         Handler().postDelayed({
             correctStatus.text = " "
-            numberOfTheQuestion = findViewById<TextView>(R.id.questionNumber)
+            numberOfTheQuestion = findViewById(R.id.questionNumber)
             numberOfTheQuestion.text = questionNumber.toString()
             numberOfTheQuestion.text = "Question-$questionNumber"
 
@@ -406,8 +408,8 @@ class Game : AppCompatActivity() {
 
         Handler().postDelayed({
             correctStatus.text = " "
-            numberOfTheQuestion = findViewById<TextView>(R.id.questionNumber)
-            numberOfTheQuestion.text = "Question$questionNumber"
+            numberOfTheQuestion = findViewById(R.id.questionNumber)
+            numberOfTheQuestion.text = "Question-$questionNumber"
 
             // Generating the 2 expressions
             val number1 = firstNoGenerator()
