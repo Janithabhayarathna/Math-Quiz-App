@@ -7,7 +7,7 @@
     <string name="expression_02">Expression 02</string>
     <string name="the_evaluation_of_the_expression_on_the_left_is">The evaluation of the expression on the left is,</string>
     <string name="status">status</string>
-    <string name="textview">TextView</string>
+    <string name="textview1">TextView</string>
     <string name="about">About</string>
     <string name="new_game">New Game</string>
     <string name="correct1">correct1</string>
@@ -20,4 +20,10 @@
     <string name="time">Time</string>
     <string name="frontLogo">logo</string>
     <string name="todo">TODO</string>
+    <string name="image">image</string>
+    <string name="textview">TextView</string>
+    <string name="userdp">userDp</string>
+    <string name="quot_author_nstudent_id_w1820253_20200571_nname_j_c_abhayarathna_n_n_t_i_confirm_that_i_understand_what_plagiarism_is_and_have_read_and_understood_the_section_on_assessment_offences_in_the_essentialinformation_for_students_the_work_that_i_have_submitted_is_entirely_my_own_any_work_from_other_authors_is_duly_referenced_and_acknowledged_quot">\"Author; \nStudent id: w1820253 / 20200571 \nName: J C Abhayarathna \n\n\t I confirm that I understand what plagiarism is and have read and understood the section on Assessment Offences in the EssentialInformation for Students. The work that I have submitted is entirely my own. Any work from other authors is duly referenced and acknowledged.\"</string>
+    <string name="dp">dp</string>
+    <string name="quot_author_nstudent_id_w1830253_20200571_nname_j_c_abhayarathna_n_n_t_i_confirm_that_i_understand_what_plagiarism_is_and_have_read_and_understood_the_section_on_assessment_offences_in_the_essentialinformation_for_students_the_work_that_i_have_submitted_is_entirely_my_own_any_work_from_other_authors_is_duly_referenced_and_acknowledged_quot1">\"Author; \nStudent id: w1820253 / 20200571 \nName: J C Abhayarathna \n\n\t I confirm that I understand what plagiarism is and have read and understood the section on Assessment Offences in the EssentialInformation for Students. The work that I have submitted is entirely my own. Any work from other authors is duly referenced and acknowledged.\"</string>
 </resources>

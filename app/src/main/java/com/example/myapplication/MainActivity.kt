@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.widget.*
-import androidx.constraintlayout.widget.ConstraintLayout
 
 /**
  * Name: Janith Chanaka Abhayarathna.
@@ -31,32 +30,18 @@ class MainActivity : AppCompatActivity() {
 
             if (!selected) {
                 //Setting the popup window
-                val popup = PopupWindow(this)
-                val view = layoutInflater.inflate(R.layout.popup, null)
-                popup.contentView = view
-
-                val dp = view.findViewById<ImageView>(R.id.creator)
-                val text = view.findViewById<TextView>(R.id.para)
-                val popupFrame = view.findViewById<ConstraintLayout>(R.id.frame)
-
-                dp.setImageResource(
-                    resources.getIdentifier(
-                        "dp",
-                        "drawable",
-                        "com.example.myApplication"
-                    )
-                )
-                text.text =
-                    "Author; \nStudent id: w1820253 / 20200571 \nName: J C Abhayarathna \n\n\t I confirm that I understand what plagiarism is and have read and understood the section on Assessment Offences in the EssentialInformation for Students. The work that I have submitted is entirely my own. Any work from other authors is duly referenced and acknowledged."
 
                 selected = true
+                val popupFrame = PopupWindow(this)
+                popupFrame.isFocusable
+                val view = layoutInflater.inflate(R.layout.popup, null)
+                popupFrame.contentView = view
+                popupFrame.showAtLocation(view, Gravity.CENTER, 0, 0)
 
-                popupFrame.setOnClickListener {
-                    popup.dismiss()
+                view.setOnClickListener {
+                    popupFrame.dismiss()
                     selected = false
                 }
-
-                popup.showAtLocation(view, Gravity.CENTER, 0, 0)
 
             } else {
                 Toast.makeText(applicationContext, "Already in the about window.", Toast.LENGTH_SHORT).show()

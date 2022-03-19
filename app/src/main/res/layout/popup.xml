@@ -2,38 +2,41 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frame"
     android:layout_width="350sp"
     android:layout_height="450sp"
-    android:background="@color/cardview_dark_background"
-    android:gravity="center">
+    android:layout_gravity="center"
+    android:background="@drawable/bgimage">
 
-    <TextView
-        android:id="@+id/para"
-        android:layout_width="wrap_content"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/cardview_dark_background"
-        android:text="@string/textview"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        android:typeface="serif"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.598" />
+        tools:ignore="MissingConstraints">
 
-    <ImageView
-        android:id="@+id/creator"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:contentDescription="@string/creatordp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.083"
-        tools:srcCompat="@drawable/dp" />
+        <ImageView
+            android:layout_width="150sp"
+            android:layout_height="150sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10sp"
+            android:contentDescription="@string/dp"
+            android:src="@drawable/dp"
+            app:srcCompat="@drawable/dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/quot_author_nstudent_id_w1830253_20200571_nname_j_c_abhayarathna_n_n_t_i_confirm_that_i_understand_what_plagiarism_is_and_have_read_and_understood_the_section_on_assessment_offences_in_the_essentialinformation_for_students_the_work_that_i_have_submitted_is_entirely_my_own_any_work_from_other_authors_is_duly_referenced_and_acknowledged_quot1"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,52 +36,50 @@
         android:id="@+id/imageView3"
         android:layout_width="94dp"
         android:layout_height="109dp"
-        android:contentDescription="TODO"
+        android:contentDescription="icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.21"
+        app:layout_constraintVertical_bias="0.265"
         app:srcCompat="@drawable/icon1" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="83dp"
         android:layout_height="107dp"
-        android:contentDescription="TODO"
+        android:contentDescription="icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.951"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.213"
+        app:layout_constraintVertical_bias="0.264"
         app:srcCompat="@drawable/icon2" />
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="95dp"
         android:layout_height="89dp"
-        android:contentDescription="TODO"
+        android:contentDescription="icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.045"
+        app:layout_constraintVertical_bias="0.104"
         app:srcCompat="@drawable/icon5" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="365dp"
+        android:layout_height="437dp"
+        android:contentDescription="icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.863"
-        app:srcCompat="@drawable/idea"
-        android:contentDescription="TODO" />
+        app:layout_constraintVertical_bias="0.755"
+        app:srcCompat="@drawable/idea" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

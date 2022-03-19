@@ -9,10 +9,8 @@ import android.widget.Button
 import android.widget.TextView
 import android.os.CountDownTimer
 import android.os.Handler
-import android.widget.ImageView
 import android.widget.Toast
 import java.util.*
-import java.util.Timer
 import kotlin.concurrent.schedule
 
 class Game : AppCompatActivity() {
@@ -37,6 +35,8 @@ class Game : AppCompatActivity() {
     var finish = false
 
     var questionNumber = 1
+
+    lateinit var numberOfTheQuestion:TextView
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -86,14 +86,14 @@ class Game : AppCompatActivity() {
                         grtBtn.isEnabled = true
                         eqlBtn.isEnabled = true
                         lesBtn.isEnabled = true
-                    }, 1000)
+                    }, 800)
                 } else {
                     ifWrong(expression01, expression02, correctStatus)
                     Handler().postDelayed({
                         grtBtn.isEnabled = true
                         eqlBtn.isEnabled = true
                         lesBtn.isEnabled = true
-                    }, 1000)
+                    }, 800)
                 }
 
             } else {
@@ -117,14 +117,14 @@ class Game : AppCompatActivity() {
                         grtBtn.isEnabled = true
                         eqlBtn.isEnabled = true
                         lesBtn.isEnabled = true
-                    }, 1000)
+                    }, 800)
                 } else {
                     ifWrong(expression01, expression02, correctStatus)
                     Handler().postDelayed({
                         grtBtn.isEnabled = true
                         eqlBtn.isEnabled = true
                         lesBtn.isEnabled = true
-                    }, 1000)
+                    }, 800)
                 }
             } else {
                 Toast.makeText(applicationContext, "Time over!", Toast.LENGTH_LONG).show()
@@ -146,14 +146,14 @@ class Game : AppCompatActivity() {
                         grtBtn.isEnabled = true
                         eqlBtn.isEnabled = true
                         lesBtn.isEnabled = true
-                    }, 1000)
+                    }, 800)
                 } else {
                     ifWrong(expression01, expression02, correctStatus)
                     Handler().postDelayed({
                         grtBtn.isEnabled = true
                         eqlBtn.isEnabled = true
                         lesBtn.isEnabled = true
-                    }, 1000)
+                    }, 800)
                 }
 
             } else {
@@ -166,6 +166,7 @@ class Game : AppCompatActivity() {
 
     override fun onSaveInstanceState(outState : Bundle) {
         super.onSaveInstanceState(outState)
+
         outState.putInt("correct",noOfCorrectAnswers)
         outState.putInt("incorrect",noOfWrongAnswers)
         outState.putInt("correctValue",correctValue)
@@ -179,10 +180,11 @@ class Game : AppCompatActivity() {
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
+
         noOfCorrectAnswers = savedInstanceState.getInt("correct",0)
         noOfWrongAnswers = savedInstanceState.getInt("incorrect",0)
         correctValue = savedInstanceState.getInt("correctValue",0)
-        counter = savedInstanceState.getInt("counter",0)
+        counter = savedInstanceState.getInt("counter")
         questionNumber = savedInstanceState.getInt("questionNumber",1)
         value1 = savedInstanceState.getInt("value1",0)
         value2 = savedInstanceState.getInt("value2",0)
@@ -199,7 +201,7 @@ class Game : AppCompatActivity() {
 
         val timer = findViewById<TextView>(R.id.timer)
 
-        object : CountDownTimer(500000, 1000) {
+        object : CountDownTimer(5000000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
 
                 timer.text = counter.toString()
@@ -220,6 +222,7 @@ class Game : AppCompatActivity() {
             override fun onFinish() {
                 //After the timer reach to 0, this part will execute
 
+                numberOfTheQuestion.text = " "
                 Toast.makeText(applicationContext, "Time over!", Toast.LENGTH_SHORT).show()
 
                 timer.text = "0!"
@@ -381,7 +384,9 @@ class Game : AppCompatActivity() {
 
         Handler().postDelayed({
             correctStatus.text = " "
-            Toast.makeText(applicationContext, "Qusetion $questionNumber", Toast.LENGTH_SHORT).show()
+            numberOfTheQuestion = findViewById<TextView>(R.id.questionNumber)
+            numberOfTheQuestion.text = questionNumber.toString()
+            numberOfTheQuestion.text = "Question-$questionNumber"
 
             // Generating the 2 expressions
             val number1 = firstNoGenerator()
@@ -401,8 +406,9 @@ class Game : AppCompatActivity() {
 
         Handler().postDelayed({
             correctStatus.text = " "
+            numberOfTheQuestion = findViewById<TextView>(R.id.questionNumber)
+            numberOfTheQuestion.text = "Question$questionNumber"
 
-            Toast.makeText(applicationContext, "Qusetion $questionNumber", Toast.LENGTH_SHORT).show()
             // Generating the 2 expressions
             val number1 = firstNoGenerator()
             val number2 = firstNoGenerator()
