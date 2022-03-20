@@ -15,6 +15,11 @@ import android.widget.*
 
 class MainActivity : AppCompatActivity() {
 
+    /**
+     * On create
+     *
+     * @param savedInstanceState
+     */
     @SuppressLint("InflateParams", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,13 +29,13 @@ class MainActivity : AppCompatActivity() {
         val aboutBtn = findViewById<Button>(R.id.abtBtn)
         val nextGameBtn = findViewById<Button>(R.id.gameBtn)
 
-        //Setting up the on click action listener for the about button
         var selected = false
+        //Setting up the on click action listener for the about button
         aboutBtn.setOnClickListener {
 
             if (!selected) {
-                //Setting the popup window
 
+                //Setting the popup window
                 selected = true
                 val popupFrame = PopupWindow(this)
                 popupFrame.isFocusable
@@ -42,7 +47,6 @@ class MainActivity : AppCompatActivity() {
                     popupFrame.dismiss()
                     selected = false
                 }
-
             } else {
                 Toast.makeText(applicationContext, "Already in the about window.", Toast.LENGTH_SHORT).show()
             }
@@ -50,8 +54,8 @@ class MainActivity : AppCompatActivity() {
 
         //Setting up the on click action listener for the next button
         nextGameBtn.setOnClickListener {
-            val newGamer = Intent(this, Game::class.java)
-            startActivity(newGamer)
+            val newGame = Intent(this, Game::class.java)
+            startActivity(newGame)
         }
     }
 }

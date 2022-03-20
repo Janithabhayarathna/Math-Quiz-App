@@ -72,7 +72,7 @@
         android:id="@+id/imageView6"
         android:layout_width="109dp"
         android:layout_height="123dp"
-        android:contentDescription="@string/image"
+        android:contentDescription="@string/p"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
